@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    padview
+{% endblock %}
+
+{% block main %}
+     <h2> For what room would you like to access padview? </h2>
+    <form action="/padview" method="post">
+        <div class="form-group">
+           <select class = "form-control" name= "room">
+                   <option disabled selected value>Rooms</option>
+                    <option value="LL00">LL00</option>
+                    <option value="LL01">LL01</option>
+                    <option value="LL02">LL02</option>
+                    <option value="LL03">LL03</option>
+                    <option value="LL04">LL04</option>
+                    <option value="S01">S01</option>
+                    <option value="S02">S02</option>
+           </select>
+        </div>
+        <button class="btn btn-primary" type="submit">View</button>
+    </form>
+
+
+{% endblock %}

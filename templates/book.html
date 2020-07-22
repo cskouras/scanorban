@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book
+{% endblock %}
+
+{% block main %}
+<head>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <link rel="stylesheet" href="/resources/demos/style.css">
+ <link rel="stylesheet" type="text/css" href="dist/bootstrap-clockpicker.min.css">
+</head>
+
+<body>
+
+    {% if error %}
+        <h2> {{error }}</h2>
+    {% endif %}
+
+    <h1> Book a Room: </h1>
+    <div class = "container">
+        <form action="/book" method="post">
+
+
+            <div class="form-group">
+                <label for="date"><b>Date: </b></label>
+                <input type="text" class="form-control" id="datepicker" name ="date" style="width: 200px">
+            </div>
+
+           <div class="form-group">
+                <label for="myTime"><b>Time:</b></label>
+                <input class="form-group" class="form-control" type="time" id="myTime" step="1800" name ="time" style="width: 200px">
+           </div>
+
+           <div class="form-group" >
+                <label for="duration"><b>Duration: </b></label> <select name = "duration" class="custom-select" style="width: 200px">
+                    <option value= 1>1h</option>
+                    <option value= 2>2h</option>
+                    <option value= 3>3h</option>
+                </select>
+            </div>
+
+        <br>
+
+        <div class="form-group">
+              <label for="size"><b>Size: </b></label> <select name = "size" class= "custom-select" style="width: 200px">
+                <option value = 2> 2+ Seats </option>
+                <option value = 3> 3+ Seats</option>
+                <option value = 4> 4+ Seats </option>
+             </select>
+        </div>
+
+        <div>
+        <br>
+
+
+
+
+        <button class="btn btn-danger" type="submit">Check Availabilities</button>
+        </div>
+      </form>
+    </div>
+
+</body>
+
+{% endblock %}

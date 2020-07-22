@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    availibilities
+{% endblock %}
+
+{% block main %}
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert"> Error: {{ error }} </div>
+    {% else %}
+    <form action="/availabilities" method="post">
+        <!-- using developer tool to analyze drop down -->
+
+        <br>
+        <h1>Available Rooms: </h1>
+
+        <div>
+        <table class = "table table-striped" id = "table">
+            <th>Name</th>
+            <th>Location</th>
+            <th>Size</th>
+            {%for availabilities in availabilities %}
+            </tr>
+                <td>{{availabilities.room_name}}</td>
+                <td>{{availabilities.location}}</td>
+                <td>{{availabilities.size}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <br>
+
+        </div>
+        <div class="form-group">
+           <select class = "form-control" name= "value">
+               <option disabled selected value>Rooms
+               </option>
+               {% for availabilities in availabilities %}
+               <option value="{{availabilities.room_name}}">{{ availabilities.room_name }}</option>
+               {% endfor %}
+           </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Reserve</button>
+    </form>
+    {% endif %}
+
+    <Br>
+
+    <div class="row">
+    {% for availabilities in availabilities %}
+        <div class="column">
+          <img src="/static/{{availabilities.room_name}}.jpg" alt="Room" style="width:100%">
+          <h2>{{availabilities.room_name}}</h2>
+        </div>
+    {% endfor %}
+    </div>
+
+    <br>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirm a Booking
+{% endblock %}
+
+
+{% block main %}
+    {% if error %}
+    <h1> {{error}} </h1>
+    {% else %}
+
+    <h1>You are booking or confirming room</h1>
+    <h1> {{roomName}} </h1>
+
+    <form action="/login?roomID={{roomID}}" method="post">
+        <button class="btn btn-danger" type="submit">Log In To Confirm</button>
+    </form>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Your Current Bookings
+{% endblock %}
+
+
+{% block main %}
+  <body>
+
+    <div class="row">
+    <div class="column">
+      <img src="/static/LL01.jpg" alt="Room" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="/static/LL02.jpg" alt="Room" style="width:100%">
+    </div>
+    <div class="column">
+      <img src="/static/S01.jpg" alt="Room" style="width:100%">
+    </div>
+    </div>
+
+    {% if noBookings %}
+    <h1>  {{ noBookings }} </h1>
+
+
+    {% else %}
+
+    <h1> Your current bookings:</h1>
+    <div id="flip-scroll">
+      <table class="table table-striped" id = "table">
+        <thead>
+          <tr>
+            <th scope="col">Room Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for row in info%}
+            <tr>
+              <td>{{row['room_name']}}</td>
+              <td>{{row['location']}}</td>
+              <td>{{ row['start'] | dateFormat}}</td>
+              <td>{{row['end'] | dateFormat}}</td>
+              <td>{{row['confirmed'] | confirmed}}</td>
+            </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+      <br>
+
+      <h5> Please ensure that, upon arriving to your room at the scheduled time, you scan the QR code with your phone on the iPad display in the room. </h5>
+      <h5> Only by scanning the QR code are you able to switch your status from unconfirmed to confirmed. </h5>
+      <br>
+      <br>
+      <h2>Cancel A Booking</h2>
+      <form action="/bookings" method="post">
+        <div class="form-group">
+           <select class = "form-control" name= "cancelation">
+               <option disabled selected value>Select a booking to cancel
+               </option>
+               {% for row in info %}
+               <option value="{{row['booking_id']}}">{{ row['start'] | dateFormat +' '+ row['room_name'] }}</option>
+               {% endfor %}
+           </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Cancel</button>
+      </form>
+
+      {% endif %}
+  </body>
+{% endblock %}

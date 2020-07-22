@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Confirm a Booking
+{% endblock %}
+
+
+{% block main %}
+    {% if error %}
+    <h1> {{error}} </h1>
+
+    {% else %}
+
+    <form action="/directbook" method="POST">
+    	<h1> You are booking room {{roomName}}  </h1>
+		<div>
+            <select class = "form-control" name= "roomID">
+               <option disabled selected value>confirm the roomID</option>
+               <option value="{{roomID}}">{{roomID}}</option>
+           </select>
+        </div>
+        <br>
+        <h2> Please select the booking time: </h2>
+        <div>
+            <label for="start"><p>From: </p></label>
+            <select class = "form-control" name= "start">
+               <option disabled selected value> start time </option>
+               <option value="{{start}}">{{start|dateFormat}}</option>
+           </select>
+        </div>
+        <div>
+            <label for="start"><p>To: </p></label>
+            <select class = "form-control" name= "end">
+               <option disabled selected value> end time </option>
+               {% for row in end %}
+               <option value="{{row}}">{{row|dateFormat}}</option>
+               {% endfor %}
+           </select>
+        </div>
+        <br>
+        <div>
+        <button class="btn btn-danger" type="submit" style="width=80px">Book!</button>
+        </div>
+    </form>
+
+    <!-- <img src="/static/{{roomName}}.jpg" alt="Room" style="width:100%"> -->
+
+    {% endif %}
+
+{% endblock %}

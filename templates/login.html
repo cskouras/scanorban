@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+
+
+     <div class="harvardimage">
+          <div class="harvardtext">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class = "form-container">
+                <h3 id = "login" style="font-size:50px;">Login</h3>
+
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="email" placeholder="email" type="text">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="password" placeholder="password" type="password">
+                        </div>
+                        {% if error %}
+                            <h4> Error: {{ error }} </h4>
+                        {% endif %}
+                        <button class="btn btn-danger whiteBorder" type="submit">Log In</button>
+                    </form>
+            </div>
+
+
+         </div>
+    </div>
+
+     <div class="nav-item"><a class="nav-link" href="/padview"><button type="button" class="btn btn-outline-dark">Access Padview</button></a></div>
+
+
+{% endblock %}
